@@ -30,15 +30,22 @@ export default defineEventHandler(async (event) => {
 
 		trail.push({ id: current.id, title: current.title, permalink: current.permalink });
 
+		const visitedIds = new Set<string>([current.id]);
+
 		while (current.parent?.id) {
+			if (visitedIds.has(current.parent.id)) break;
+
 			const parent = await directusServer.request(
-				readItem('pages', current.parent.id, {
+				readItems('pages', {
+					filter: { id: { _eq: current.parent.id }, status: { _eq: 'published' } },
 					fields: ['id', 'title', 'permalink', 'parent.id'] as any,
+					limit: 1,
 				}),
 			);
-			if (!parent) break;
-			trail.unshift({ id: (parent as any).id, title: (parent as any).title, permalink: (parent as any).permalink });
-			current = parent;
+			const parentPage = Array.isArray(parent) ? parent[0] : parent;
+			if (!parentPage) break;
+			trail.unshift({ id: (parentPage as any).id, title: (parentPage as any).title, permalink: (parentPage as any).permalink });
+			current = parentPage;
 		}
 
 		return trail;

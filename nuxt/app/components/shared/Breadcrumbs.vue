@@ -3,7 +3,7 @@
     <ol class="breadcrumb-list">
       <li v-for="(crumb, idx) in breadcrumbs" :key="crumb.id" class="breadcrumb-item">
         <NuxtLink v-if="idx < breadcrumbs.length - 1" :to="crumb.permalink">{{ crumb.title }}</NuxtLink>
-        <span v-else>{{ crumb.title }}</span>
+        <span v-else aria-current="page">{{ crumb.title }}</span>
       </li>
     </ol>
   </nav>
@@ -19,9 +19,13 @@ interface BreadcrumbItem {
 const props = defineProps<{ permalink: string }>();
 const permalink = toRef(props, 'permalink');
 
-const { data: breadcrumbs } = await useFetch<BreadcrumbItem[]>('/api/pages/breadcrumbs', {
+const { data: breadcrumbs, error: breadcrumbsError } = await useFetch<BreadcrumbItem[]>('/api/pages/breadcrumbs', {
   query: { permalink },
 });
+
+if (import.meta.dev && breadcrumbsError.value) {
+  console.error('[Breadcrumbs] Failed to fetch breadcrumbs:', breadcrumbsError.value);
+}
 </script>
 
 <style scoped>
