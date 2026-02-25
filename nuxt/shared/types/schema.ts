@@ -390,6 +390,8 @@ export interface Page {
 	title: string;
 	/** @description Unique URL for this page (start with `/`, can have multiple segments `/about/me`)). @required */
 	permalink: string;
+	/** @description Parent page for hierarchical navigation. */
+	parent?: Page | string | null;
 	/** @description Is this page published? */
 	status?: 'draft' | 'in_review' | 'published';
 	/** @description Publish now or schedule for later. */

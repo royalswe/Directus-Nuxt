@@ -56,6 +56,8 @@ onMounted(() => {
 			:navigation="siteData.headerNavigation"
 			:globals="siteData.globals"
 		/>
+		
+		<Breadcrumbs :permalink="$route.path" />
 		<NuxtPage />
 		<Footer
 			v-if="siteData?.footerNavigation"
