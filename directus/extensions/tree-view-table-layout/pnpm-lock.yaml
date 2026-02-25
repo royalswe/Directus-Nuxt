@@ -11,6 +11,9 @@ importers:
       '@directus/extensions-sdk':
         specifier: ^12.1.2
         version: 12.1.4(@types/node@25.3.0)(@unhead/vue@1.11.20(vue@3.5.29(typescript@5.9.3)))(knex@3.1.0)(pinia@2.3.1(typescript@5.9.3)(vue@3.5.29(typescript@5.9.3)))(sass@1.97.3)(terser@5.46.0)(typescript@5.9.3)(vue-router@4.6.4(vue@3.5.29(typescript@5.9.3)))
+      '@directus/system-data':
+        specifier: ^4.1.0
+        version: 4.1.0
       '@directus/utils':
         specifier: ^12.0.4
         version: 12.0.5(vue@3.5.29(typescript@5.9.3))
@@ -109,6 +112,9 @@ packages:
 
   '@directus/system-data@2.1.2':
     resolution: {integrity: sha512-gfJao9YBF7wRE0BpGrNCgRUdibQk0DyYgq5raS5f1agVTf78t5Qk2kPifX/WZTskJx1qBPYeFkmArMBK9fBisA==}
+
+  '@directus/system-data@4.1.0':
+    resolution: {integrity: sha512-4Rt+6xnUdfbrWYYUwDI13jBysQ2Vu+0/Hcs2m+R5Z7/UgUGdeibY7zhRQyY8UCxRqH04BI5VtgayHI9H/KzVBg==}
 
   '@directus/themes@1.0.5':
     resolution: {integrity: sha512-suRzdjb8K8KwEodBaQq2obE7X4IK585b/NVFWP1XmYD7EjwAKRCtDSJkdwJ3WRYfuJeN7+c0FMJsep2CPGNyFw==}
@@ -2228,6 +2234,8 @@ snapshots:
       - tedious
 
   '@directus/system-data@2.1.2': {}
+
+  '@directus/system-data@4.1.0': {}
 
   '@directus/themes@1.0.5(@unhead/vue@1.11.20(vue@3.5.29(typescript@5.9.3)))(pinia@2.3.1(typescript@5.9.3)(vue@3.5.29(typescript@5.9.3)))(vue@3.5.11(typescript@5.9.3))':
     dependencies:

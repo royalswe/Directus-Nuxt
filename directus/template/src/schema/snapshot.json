@@ -817,7 +817,7 @@
           "blocks.background"
         ],
         "note": "Dynamic page builder",
-        "preview_url": "http://localhost:3000{{permalink}}?preview=true&version={{$version}}",
+        "preview_url": "http://localhost:3030{{permalink}}?preview=true&version={{$version}}",
         "singleton": false,
         "sort": 1,
         "sort_field": "sort",
@@ -845,7 +845,7 @@
         "icon": "article",
         "item_duplication_fields": ["title", "slug", "author", "status", "image", "description", "content", "seo"],
         "note": "Individual blog posts",
-        "preview_url": "http://localhost:3000/blog/{{slug}}?preview=true&version={{$version}}",
+        "preview_url": "http://localhost:3030/blog/{{slug}}?preview=true&version={{$version}}",
         "singleton": false,
         "sort": 2,
         "sort_field": "sort",
@@ -11942,14 +11942,14 @@
               "icon": "arrow_outward",
               "label": "View on Website",
               "type": "normal",
-              "url": "http://localhost:3000{{permalink}}"
+              "url": "http://localhost:3030{{permalink}}"
             },
             {
               "actionType": "link",
               "icon": "edit",
               "label": "Open in Visual Editor",
               "type": "normal",
-              "url": "/admin/visual/http://localhost:3000{{permalink}}?visual-editing=true"
+              "url": "/admin/visual/http://localhost:3030{{permalink}}?visual-editing=true"
             },
             {
               "actionType": "flow",
@@ -12966,14 +12966,14 @@
               "icon": "arrow_outward",
               "label": "View on Website",
               "type": "normal",
-              "url": "http://localhost:3000/blog/{{slug}}"
+              "url": "http://localhost:3030/blog/{{slug}}"
             },
             {
               "actionType": "link",
               "icon": "edit",
               "label": "Open in Visual Editor",
               "type": "normal",
-              "url": "/admin/visual/http://localhost:3000/blog/{{slug}}?visual-editing=true"
+              "url": "/admin/visual/http://localhost:3030/blog/{{slug}}?visual-editing=true"
             },
             {
               "actionType": "flow",

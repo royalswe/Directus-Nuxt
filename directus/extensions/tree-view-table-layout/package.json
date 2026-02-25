@@ -49,7 +49,7 @@
 		"link": "directus-extension link"
 	},
 	"devDependencies": {
-		"@directus/system-data": "latest",
+		"@directus/system-data": "^4.1.0",
 		"@directus/extensions-sdk": "^12.1.2",
 		"@directus/utils": "^12.0.4",
 		"@json2csv/plainjs": "^7.0.6",

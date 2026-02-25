@@ -43,8 +43,12 @@ Directus Draft Mode out of the box, enabling live previews of unpublished or dra
 [Directus Live Preview](https://docs.directus.io/guides/headless-cms/live-preview/nuxt-3.html#set-up-live-preview-with-nuxt-3)
 
 - The live preview feature works seamlessly on deployed environments.
-- **For Local Development**: If using local Docker, the CSP configuration is provided in `.env.example`. See [`../../directus/README.md`](../../directus/README.md#content-security-policy-csp-and-preview-issues) for details.
-- **For Directus Cloud**: Directus Cloud requires HTTPS for previews. You'll need to use HTTPS tunneling (ngrok, localtunnel, etc.) or configure CSP in your Directus Cloud settings. See the [main README troubleshooting section](../../README.md#preview-not-working---content-security-policy-csp-issues) for details.
+- **For Local Development**: If using local Docker, the CSP configuration is provided in `.env.example`. See
+  [`../../directus/README.md`](../../directus/README.md#content-security-policy-csp-and-preview-issues) for details.
+- **For Directus Cloud**: Directus Cloud requires HTTPS for previews. You'll need to use HTTPS tunneling (ngrok,
+  localtunnel, etc.) or configure CSP in your Directus Cloud settings. See the
+  [main README troubleshooting section](../../README.md#preview-not-working---content-security-policy-csp-issues) for
+  details.
 
 ### **Admin Bar**
 
@@ -105,7 +109,6 @@ To get started, you need to configure environment variables. Follow these steps:
    ```
 
 2. **Update the following variables in your `.env` file:**
-
    - **`DIRECTUS_URL`**: URL of your Directus instance.
    - **`DIRECTUS_SERVER_TOKEN`**: Public token for accessing public resources in Directus. Use the token from the
      **Webmaster** account.
@@ -126,11 +129,14 @@ To get started, you need to configure environment variables. Follow these steps:
    _(You can also use `npm install` if you prefer.)_
 
    **Note for npm users:** This project uses pnpm workspaces. If you're using npm instead, you'll need to:
+
    ```bash
    rm -rf node_modules pnpm-lock.yaml
    npm install
    ```
-   npm doesn't support pnpm's `workspace:` protocol, so you must remove `pnpm-lock.yaml` before running `npm install`. The project will generate a `package-lock.json` instead.
+
+   npm doesn't support pnpm's `workspace:` protocol, so you must remove `pnpm-lock.yaml` before running `npm install`.
+   The project will generate a `package-lock.json` instead.
 
 2. Start the development server:
 
@@ -138,7 +144,7 @@ To get started, you need to configure environment variables. Follow these steps:
    pnpm run dev
    ```
 
-3. Visit [http://localhost:3000](http://localhost:3000).
+3. Visit [http://localhost:3030](http://localhost:3030).
 
 ## Generate Directus Types
 
@@ -152,9 +158,14 @@ for your Directus schema.
    ```bash
    pnpm run generate:types
    ```
-3. When prompted, enter your Directus admin token (with permissions to read system collections like `directus_fields`), or set it ahead of time via the `DIRECTUS_ADMIN_TOKEN` environment variable for non-interactive runs (e.g., CI).
+3. When prompted, enter your Directus admin token (with permissions to read system collections like `directus_fields`),
+   or set it ahead of time via the `DIRECTUS_ADMIN_TOKEN` environment variable for non-interactive runs (e.g., CI).
 
-> **Note:** The type generation requires an admin token with permissions to read system collections like `directus_fields`. The public token does not have sufficient permissions for this operation. You can either provide the admin token interactively when prompted, or set it via the `DIRECTUS_ADMIN_TOKEN` environment variable (e.g., `DIRECTUS_ADMIN_TOKEN=your_token pnpm run generate:types`) to run without a TTY. Nuxt also accepts `DIRECTUS_SERVER_TOKEN` for backward compatibility.
+> **Note:** The type generation requires an admin token with permissions to read system collections like
+> `directus_fields`. The public token does not have sufficient permissions for this operation. You can either provide
+> the admin token interactively when prompted, or set it via the `DIRECTUS_ADMIN_TOKEN` environment variable (e.g.,
+> `DIRECTUS_ADMIN_TOKEN=your_token pnpm run generate:types`) to run without a TTY. Nuxt also accepts
+> `DIRECTUS_SERVER_TOKEN` for backward compatibility.
 
 ## Folder Structure
 

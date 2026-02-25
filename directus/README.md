@@ -5,11 +5,13 @@ This directory contains the Docker Compose configuration for running Directus lo
 ## Quick Start
 
 1. Copy `.env.example` to `.env`:
+
    ```bash
    cp .env.example .env
    ```
 
 2. Start Directus:
+
    ```bash
    docker compose up -d
    ```
@@ -25,19 +27,21 @@ This directory contains the Docker Compose configuration for running Directus lo
 5. Apply the CMS template using the Directus template CLI:
 
    **Interactive mode** (recommended for first-time setup and security):
+
    ```bash
    npx directus-template-cli@latest apply
    ```
-   
+
    Follow the interactive prompts:
    - **Template Source**: Choose "Local directory"
    - **Template Location**: Enter `./template` (relative to this directory)
    - **Directus URL**: Enter `http://localhost:8055`
    - **Authentication**: Select "Directus Access Token" and provide the token from step 4
-   
+
    > **Security Note:** Interactive mode is recommended as it prompts for your token securely rather than passing it on the command line. The token is not displayed in your terminal history or process lists.
-   
+
    **Programmatic mode** (for automation/scripts):
+
    ```bash
    npx directus-template-cli@latest apply -p \
      --directusUrl="http://localhost:8055" \
@@ -45,12 +49,13 @@ This directory contains the Docker Compose configuration for running Directus lo
      --templateLocation="./template" \
      --templateType="local"
    ```
-   
+
    > **Security Warning:** Passing admin tokens on the command line exposes them in process lists and shell history. For production or shared systems, consider:
+   >
    > - Using environment variables: `DIRECTUS_TOKEN=your_token npx directus-template-cli@latest apply -p ...`
    > - Using a temporary token with limited scope
    > - Reviewing the [directus-template-cli package](https://www.npmjs.com/package/directus-template-cli) before use
-   
+
    This will load all collections, fields, permissions, and content from the template into your Directus instance.
 
 ## Content Security Policy (CSP) and Preview Issues
@@ -61,7 +66,7 @@ When using Directus Visual Editor with a local development server, you may encou
 
 The `.env.example` file includes the correct CSP settings for local development. When you copy `.env.example` to `.env` (as shown in the Quick Start), the `CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_SRC` will be configured with common localhost ports:
 
-- `http://localhost:3000` (Next.js, Nuxt default port)
+- `http://localhost:3030` (Next.js, Nuxt default port)
 - `http://localhost:4321` (Astro default port)
 - `http://localhost:5173` (SvelteKit/Vite default port)
 
