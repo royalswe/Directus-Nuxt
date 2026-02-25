@@ -142,6 +142,27 @@ export default defineLayout<LayoutOptions, LayoutQuery>({
 
 		const { isFiltered } = useFilteringTreeView({ filterUser, search });
 
+		// On first visit (layoutQuery.sort is null/undefined), default to manual sort.
+		// Does NOT override an explicit [] saved by the user toggling sort off.
+		watch(
+			sortField,
+			(newSortField) => {
+				if (newSortField && layoutQuery.value?.sort == null) {
+					sort.value = [newSortField];
+				}
+			},
+			{ immediate: true },
+		);
+
+		// When a filter is cleared, restore manual sort if it was emptied by the
+		// filter watcher (turnOffManualSortOnFilter). This does not affect an
+		// explicit toggle-off because isFiltered doesn't change in that case.
+		watch(isFiltered, (filtered) => {
+			if (!filtered && sortField.value && !sort.value.length) {
+				sort.value = [sortField.value];
+			}
+		});
+
 		const { saveEdits } = useSaveEdits();
 
 		return {
@@ -215,10 +236,9 @@ export default defineLayout<LayoutOptions, LayoutQuery>({
 			const page = syncRefProperty(layoutQuery, 'page', 1);
 			const limit = syncRefProperty(layoutQuery, 'limit', -1);
 
-			const defaultSort = computed(() => {
-				const field = sortField.value ?? primaryKeyField.value?.field;
-				return field ? [field] : [];
-			});
+			const defaultSort = computed<string[]>(() =>
+				sortField.value ? [sortField.value] : [],
+			);
 
 			const sort = syncRefProperty(layoutQuery, 'sort', defaultSort);
 

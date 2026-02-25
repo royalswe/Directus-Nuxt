@@ -100,7 +100,7 @@ function usePreventClickAfterDragging({ mouseDownHandler, clickHandler }) {
 		>
 			<div class="cell-style">
 				<v-icon
-					v-if="showManualSort"
+					v-if="showManualSort && sortedManually"
 					name="drag_handle"
 					class="drag-handle manual"
 					:class="{ 'sorted-manually': sortedManually, nestable }"

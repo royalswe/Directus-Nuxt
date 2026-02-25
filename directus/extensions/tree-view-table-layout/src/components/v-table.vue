@@ -369,7 +369,7 @@ function useTreeView({
 	} = useCollapsible();
 
 	watch(() => props.items, initTreeView);
-	watch(() => treeViewAble.value, initTreeView);
+	watch(() => treeViewAble.value, initTreeView, { immediate: true });
 	watch(() => parentField.value, initTreeView);
 
 	watch(() => parentField.value, resetIfNoParentSelected);
@@ -414,7 +414,6 @@ function useTreeView({
 			&& !!parentField.value
 			&& showManualSort.value
 			&& !!sortKey.value
-			&& sortIsManual.value
 		);
 	}
 
