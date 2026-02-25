@@ -28,6 +28,13 @@ const { parentItem, isInEditMode, processingMessage } = toRefs(props);
 const { getItem, defCollectionName } = props;
 const emit = defineEmits(['onDrop']);
 
+// Compute depth for indentation
+function getDepth(item: DataItem, depth = 0): number {
+  if (!item.rel_parent) return depth;
+  const parent = getItem(item.rel_parent);
+  return getDepth(parent, depth + 1);
+}
+
 // ITEMS
 const items = computed(() => parentItem.value.rels_children.map((key: string) => getItem(key)) || []);
 
@@ -111,6 +118,7 @@ onUpdated(() => {
         :data-is-expanded="el._is_expanded"
         :data-is-leaf="!el._allow_children"
         :data-has-children="el.rels_children.length > 0"
+        :style="{ marginLeft: getDepth(el) * 1.5 + 'rem' }"
       >
         <VListItem block :grow="debug" :clickable="!isInEditMode" @click="() => goTo(el.rel_item[defPrimKeyName])">
           <VIcon name="drag_handle" class="drag-handle" />
