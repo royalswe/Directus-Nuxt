@@ -1,29 +1,21 @@
 # Simple CMS Starter Templates
 
-Welcome to the **Simple CMS Starter Templates**! This repository contains front-end templates for building a simple CMS
-in different frameworks and libraries. Each subfolder represents a specific framework, offering reusable, scalable, and
-easy-to-implement CMS solutions.
+src/components/v-table.vue
 
-## **Templates**
+- isTreeViewAble() no longer requires sortIsManual — tree structure (indent + collapse) always renders
+  when parentField is configured
+- watch(() => treeViewAble.value, initTreeView, { immediate: true }) — fires on mount so the tree  
+  initializes even when all conditions are met from the start (was the root cause of the intermittent  
+  reload issue)
 
-| Framework/Library | Description                                   | Links |
-| ----------------- | --------------------------------------------- |-------------- |
-| **Next.js**       | A CMS built using Next.js and its App Router. |[→ Go to Next.js Starter](./next) |
-| **Nuxt.js**       | A CMS template leveraging Nuxt.js features.   | [→ Go to Nuxt.js Starter](./nuxt) |
-| **Svelte**        | A CMS template using the Svelte framework.    | [→ Go to Svelte Starter](./svelte) |
-| **Astro**         | A CMS optimized for performance with Astro.   |[→ Go to Astro Starter](./astro) |
+src/components/table-row.vue
 
-## **Folder Structure**
+- Drag handle: v-if="showManualSort && sortedManually" — hidden when manual sort is toggled off
 
-Each subfolder contains:
+src/index.ts
 
-- **Source Code**: Framework-specific implementation of the CMS.
-- **Documentation**: Instructions on how to set up, customize, and use the template.
-
-## Local Setup (with CLI)
-
-Run this in your terminal:
-
-```bash
-npx directus-template-cli@latest init
-```
+- defaultSort only uses sortField (no primaryKeyField fallback) — first visit correctly defaults to
+  manual sort
+- Two watchers: one restores sort on first visit (when layoutQuery.sort is null), one restores after a
+  filter is cleared
+- onSortChange(null) saves [] — explicit toggle-off persists across sessions
